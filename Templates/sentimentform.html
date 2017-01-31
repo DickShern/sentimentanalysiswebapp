@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Movie Classification</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="{% static 'style.css' %}" type="text/css" media="screen">
+	
+</head>
+	<body>
+
+	<h3>Your movie review:</h3>
+	
+		<div class="field">
+            {{review}}
+		</div>
+
+	<h3>Prediction:</h3>
+	<div>This movie review is <strong> {{prediction}}</strong> probability: ({{ probability }}%).</div>
+	<div>Other probabilities: Negative: {{ proba1 }} , Neutral: {{ proba2 }} , Positive:{{ proba3 }}.</div>
+	<div id='button'>
+		<form  action="/forward-sentiment/" method="post"> {% csrf_token %}
+	
+
+			<input type=submit value='Correct' name='feedback_button'>
+			<input type=submit value='Incorrect' name='feedback_button'>
+			<input type=hidden value='{{ prediction }}' name='prediction'>
+			<input type=hidden value='{{ review }}' name='review'>
+		</form>
+	</div>
+
+	<div id='button'>
+		<form action="/">
+			<input type=submit value='Submit another review'>
+		</form>
+
+	</div>
+	
+	</body>
+</html>

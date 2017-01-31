@@ -1,0 +1,49 @@
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Movie Classification</title>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+	
+		<link rel="stylesheet" href="{% static 'style.css' %}" type="text/css" media="screen">
+	</head>
+	<body>
+	<div>
+		<h1><a>Movie Reviewer</a></h1>
+	</div>
+	
+
+	<h2> Please enter your movie review:</h2>
+
+	{% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+
+            {% for field in form %}
+		        {% for error in field.errors %}
+		            <div class="alert alert-danger">
+		                <strong>{{ error|escape }}</strong>
+		            </div>
+		        {% endfor %}
+		    {% endfor %}
+
+		   	{{form.field.errors.error}}
+
+        </p>
+    {% endif %}
+
+
+	<form action="" method="POST" class="post-form" >{% csrf_token %}
+		{{form.review}}
+		<div>
+			<input type=submit value ='Submit review' name='submit_review'>
+		</div>
+	</form>
+
+	</body>
+</html>

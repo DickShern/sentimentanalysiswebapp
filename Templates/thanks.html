@@ -1,0 +1,24 @@
+{% load static %}
+
+<!doctype html>
+<html>
+	<head>
+		<title>Movie Classification</title>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="{% static 'style.css' %}" type="text/css" media="screen">
+
+	</head>
+
+	<body>
+	<div>
+		{{message}}
+	</div>
+		<h2>Thank you for your feedback!</h3>
+		<div id='button'>
+			<form action="/review-form">
+				<input type=submit value='Submit another review'>
+			</form>
+		</div>
+	</body>
+</html>
